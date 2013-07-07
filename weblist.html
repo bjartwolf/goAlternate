@@ -1,0 +1,128 @@
+
+<!-- saved from url=(0028)file:///tmp/pprof3415.0.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"></head><body><doctype html="">
+
+
+<title>Pprof listing</title>
+<style type="text/css">
+body {
+  font-family: sans-serif;
+}
+h1 {
+  font-size: 1.5em;
+  margin-bottom: 4px;
+}
+.legend {
+  font-size: 1.25em;
+}
+.line {
+  color: #aaaaaa;
+}
+.livesrc {
+  color: #0000ff;
+  cursor: pointer;
+}
+.livesrc:hover {
+  background-color: #cccccc;
+}
+.asm {
+  color: #888888;
+  display: none;
+}
+</style>
+<script type="text/javascript">
+function pprof_toggle_asm(e) {
+  var target;
+  if (!e) e = window.event;
+  if (e.target) target = e.target;
+  else if (e.srcElement) target = e.srcElement;
+
+  if (target && target.className == "livesrc") {
+    var asm = target.nextSibling;
+    if (asm && asm.className == "asm") {
+      asm.style.display = (asm.style.display == "block" ? "none" : "block");
+      e.preventDefault();
+      return false;
+    }
+  }
+}
+</script>
+
+
+<div class="legend">alternate<br>Total: 478 samples</div>
+<h1>main.AlternateBranch</h1>/home/bjartwolf/projects/goAlternate/alternate.go
+<pre onclick="pprof_toggle_asm()">Total:   291    291 (flat / cumulative samples)
+<span class="line">    7</span> <span class="deadsrc">              	"runtime/pprof"</span>
+<span class="line">    8</span> <span class="deadsrc">              )</span>
+<span class="line">    9</span> <span class="deadsrc">              </span>
+<span class="line">   10</span> <span class="deadsrc">              var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to file")</span>
+<span class="line">   11</span> <span class="deadsrc">              </span>
+<span class="line">   12</span> <span class="deadsrc">              func AlternateBranch(b *testing.B) {</span>
+<span class="line">   13</span> <span class="deadsrc">                  a := 13</span>
+<span class="line">   14</span> <span class="deadsrc">                  c := 9</span>
+<span class="line">   15</span> <span class="deadsrc">                  x := a</span>
+<span class="line">   16</span> <span class="livesrc">    92     92 	for i := 0; i &lt; b.N; i++ {</span><span class="asm">                    		0000000000400c16: XORQ	DX,DX
+                    		0000000000400c19: MOVQ	70(DI),BX
+                    		0000000000400c1d: CMPQ	DX,BX
+                    		0000000000400c20: JLE	main.AlternateBranch+0x36(SB)
+          44     44 		0000000000400c2a: INCQ	DX
+                    		0000000000400c2d: MOVQ	70(DI),BX
+          48     48 		0000000000400c31: CMPQ	DX,BX
+                    		0000000000400c34: JGT	main.AlternateBranch+0x22(SB)
+                    		0000000000400c3a: JMP	main.AlternateBranch+0x2a(SB)
+                    		0000000000400c3c: ADDB	AL,0(AX)
+                    		0000000000400c3e: ADDB	AL,0(AX)
+</span>
+<span class="line">   17</span> <span class="livesrc">   121    121 		if (x == a) {</span><span class="asm">         121    121 		0000000000400c22: CMPQ	CX,AX
+                    		0000000000400c25: JNE	main.AlternateBranch+0x37(SB)
+</span>
+<span class="line">   18</span> <span class="livesrc">    19     19 			x = c</span><span class="asm">          19     19 		0000000000400c27: MOVQ	SI,AX
+</span>
+<span class="line">   19</span> <span class="deadsrc">              		} else {</span>
+<span class="line">   20</span> <span class="livesrc">    59     59 			x = a</span><span class="asm">          59     59 		0000000000400c37: MOVQ	CX,AX
+</span>
+<span class="line">   21</span> <span class="deadsrc">              		}</span>
+<span class="line">   22</span> <span class="deadsrc">              	}</span>
+<span class="line">   23</span> <span class="deadsrc">              }</span>
+<span class="line">   24</span> <span class="deadsrc">              </span>
+<span class="line">   25</span> <span class="deadsrc">              func AlternateXor(b *testing.B) {</span>
+<span class="line">   26</span> <span class="deadsrc">                  a := 13</span>
+<span class="line">   27</span> <span class="deadsrc">                  c := 9</span>
+<span class="line">   28</span> <span class="deadsrc">                  x := a</span>
+</pre>
+<h1>main.AlternateXor</h1>/home/bjartwolf/projects/goAlternate/alternate.go
+<pre onclick="pprof_toggle_asm()">Total:   187    187 (flat / cumulative samples)
+<span class="line">   20</span> <span class="deadsrc">              			x = a</span>
+<span class="line">   21</span> <span class="deadsrc">              		}</span>
+<span class="line">   22</span> <span class="deadsrc">              	}</span>
+<span class="line">   23</span> <span class="deadsrc">              }</span>
+<span class="line">   24</span> <span class="deadsrc">              </span>
+<span class="line">   25</span> <span class="deadsrc">              func AlternateXor(b *testing.B) {</span>
+<span class="line">   26</span> <span class="deadsrc">                  a := 13</span>
+<span class="line">   27</span> <span class="deadsrc">                  c := 9</span>
+<span class="line">   28</span> <span class="deadsrc">                  x := a</span>
+<span class="line">   29</span> <span class="livesrc">    90     90 	for i := 0; i &lt; b.N; i++ {</span><span class="asm">                    		0000000000400c56: XORQ	AX,AX
+                    		0000000000400c59: MOVQ	70(DI),BX
+                    		0000000000400c5d: CMPQ	AX,BX
+                    		0000000000400c60: JLE	main.AlternateXor+0x3a(SB)
+          90     90 		0000000000400c6e: INCQ	AX
+                    		0000000000400c71: MOVQ	70(DI),BX
+                    		0000000000400c75: CMPQ	AX,BX
+                    		0000000000400c78: JGT	main.AlternateXor+0x22(SB)
+</span>
+<span class="line">   30</span> <span class="livesrc">    97     97 		x = a^c^x</span><span class="asm">          95     95 		0000000000400c62: MOVQ	DX,BX
+           2      2 		0000000000400c65: XORQ	SI,BX
+                    		0000000000400c68: XORQ	CX,BX
+                    		0000000000400c6b: MOVQ	BX,CX
+</span>
+<span class="line">   31</span> <span class="deadsrc">              	}</span>
+<span class="line">   32</span> <span class="deadsrc">              }</span>
+<span class="line">   33</span> <span class="deadsrc">              </span>
+<span class="line">   34</span> <span class="deadsrc">              func main () {</span>
+<span class="line">   35</span> <span class="deadsrc">              	flag.Parse()</span>
+<span class="line">   36</span> <span class="deadsrc">              	if *cpuprofile != "" {</span>
+<span class="line">   37</span> <span class="deadsrc">              		f, err := os.Create(*cpuprofile)</span>
+</pre>
+
+
+</doctype></body></html>
