@@ -1,3 +1,4 @@
+```shell
 go build alternate.go
 ./alternate --cpuprofile=alternate.prof
     Normal switch
@@ -11,3 +12,6 @@ go tool pprof alternate alternate.prof
            0   0.0% 100.0%      478 100.0% gosched0
            0   0.0% 100.0%      478 100.0% testing.(*B).launch
            0   0.0% 100.0%      478 100.0% testing.(*B).runN
+
+(pprof) weblist main
+```
